@@ -303,10 +303,10 @@ m("ul.things", [
 <section>
 	<h4>Templates can use Javascript tooling ecosystem</h4>
 	<ul>
-		<li>Build systems: Grunt, Gulp, Webpack</li>
-		<li>Modularity: AMD, Browserify, Rollup.js</li>
-		<li>Linters: JSHint, ESLint</li>
 		<li>Minifiers: Uglify.js, Google closure compiler, etc</li>
+		<li>Linters: JSHint, ESLint</li>
+		<li>Modularity: AMD, Browserify, Rollup.js</li>
+		<li>Build systems: Grunt, Gulp, Webpack</li>
 		<li>Static analysis: Facebook Flow, Typescript</li>
 	</ul>
 </section>
@@ -342,6 +342,9 @@ m "ul.things",
 	<div style="clear:both;"></div>
 </section>
 <section>
+	<h4>Other reasons...</h4>
+</section>
+<section>
 	<h4>HTML is bad at organizing</h4>
 	<pre><code class="language-markup">
 &lt;!-- 2000 lines of this in one HTML file... --&gt;
@@ -364,7 +367,7 @@ m "ul.things",
 	<h4>Better: Component-oriented architecture</h4>
 	<p>One concern per file</p>
 	<pre><code class="language-javascript">
-var Project = require("models/project");
+var Project = require("./models/project");
 	
 var List = {
     controller: function() {
@@ -394,6 +397,48 @@ var List = {
 		<li>Reusability via smart/dumb components</li>
 		<li>Scoped CSS (via JSS, J2C)</li>
 		<li>Declarative DSLs</li>
+	</ul>
+</section>
+<section>
+	<h4>Less code = less bugs</h4>
+</section>
+<section>
+	<h2>What about testing?</h2>
+</section>
+<section>
+	<h4>Testable code</h4>
+	<pre><code class="language-javascript">
+var Project = require("./models/project");
+	
+var List = {
+    controller: function() {
+        this.projects = Project.list();
+    },
+    view: function(ctrl) {
+        return m("table", [
+            ctrl.projects().map(function(item) {
+                return m("tr", [
+                    m("td", item.id),
+                    m("td", item.name)
+                ])
+            })
+        ])
+    }
+};
+	</code></pre>
+	<p>Test Frameworks: Mocha, Jasmine, Tape, ...</p>
+	<p>Mocking: Facebook Jest, Proxyquire, m.deps</p>
+	<p>Utilities: Mithril Query</p>
+</section>
+<section>
+	<h2>What about mobile?</h2>
+</section>
+<section>
+	<h4>Lichess Mobile app</h4>
+	<ul>
+		<li>Real time features</li>
+		<li>80 languages</li>
+		<li>Millions of games played</li>
 	</ul>
 </section>
 <section>
